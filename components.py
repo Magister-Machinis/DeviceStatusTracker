@@ -26,7 +26,7 @@ operations = {
     'Tries to run or is running': 'RUN',
     'Tries to scrape memory of another process': 'MEMORY_SCRAPE',
 	'Tries to perform any operations': 'BYPASS_ALL'
-}
+} 
 
 actions = {
     'Terminate process': 'TERMINATE',
