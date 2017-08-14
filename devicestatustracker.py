@@ -10,7 +10,7 @@ def devicestatus(row, user, password, directory,DEBUG):
     internalsession = requests.Session()
     username = user + row[0]
     host = row[1]
-    host, request_headers = policy.make_request_headers("DESTINATION",host,username,password, True, internalsession)
+    host, request_headers = policy.make_request_headers("DESTINATION",host,username,password,internalsession)
     clientcode = ((row[0]).split("@")[0])
     print("beginning work on "+clientcode)
     clientfolder = os.path.join(directory, clientcode)
