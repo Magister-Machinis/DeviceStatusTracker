@@ -142,7 +142,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
 #crafts and sends email
 def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
-    sendto = row[3] + ";Cybersupport@blueteamglobal.com"
+    sendto = row[2] + ";Cybersupport@blueteamglobal.com"
    
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read())
