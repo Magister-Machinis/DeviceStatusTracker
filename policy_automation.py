@@ -158,6 +158,6 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
             component.set_payload(filein.read())
         component.add_header('Content-Disposition', "attachment; filename= %s" % item)
         msg.attach(component)
-    s = smtplib('localhost')
+    s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,msgbody.as_string())
     s.quit()
