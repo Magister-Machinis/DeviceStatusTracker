@@ -144,7 +144,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
     sendto = row[3] + ";Cybersupport@blueteamglobal.com"
    
-    with open(os.path.abspath("./emailbody.txt") as bodytext:
+    with open(os.path.abspath("./emailbody.txt"),'rb') as bodytext:
         msgbody = MIMEText(bodytext.read())
     msg = MIMEMultipart()
     msg['Subject'] = "Weekly Enrollment Status Report"
