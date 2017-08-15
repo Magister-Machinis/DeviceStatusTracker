@@ -25,7 +25,7 @@ def devicestatus(row, user, password, directory,DEBUG):
         with open(os.path.join(clientfolder,clientnewlist), "wb") as newclient:
             newclient.write(newlist.content)
         print("beginning list comparison")
-        newlist,presentlist,absentlist = listcompare(clientfolder, clientlist, clientnewlist,DEBUG)
+        newlist,presentlist,absentlist = policy.listcompare(clientfolder, clientlist, clientnewlist,DEBUG)
         if DEBUG == True:
             print("new list at " + newlist)
             print("current list at " + presentlist)
@@ -34,7 +34,7 @@ def devicestatus(row, user, password, directory,DEBUG):
         print("No previous file detected, using new list")
         with open(os.path.join(clientfolder,clientlist), "wb") as newclient:
             newclient.write(newlist.content)
-        policy.devicestatus(row, user, password, directory,DEBUG)
+        devicestatus(row, user, password, directory,DEBUG)
 
       
 #reads in config file and calls processing function for each client line, can alternatively run each line in parallel
