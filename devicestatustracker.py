@@ -25,8 +25,8 @@ def devicestatus(row, user, password, directory,DEBUG):
         with open(os.path.join(clientfolder,clientnewlist), "wb") as newclient:
             newclient.write(newlist.content)
         print("beginning list comparison")
-        newlist,presentlist,absentlist = policy.listcompare(clientfolder, clientlist, clientnewlist,DEBUG)
-        policy.mailinate(row,newlist,presentlist,absentlist)
+        newlist,presentlist,absentlist,liststatus = policy.listcompare(clientfolder, clientlist, clientnewlist,DEBUG)
+        policy.mailinate(row,newlist,presentlist,absentlist,liststatus)
         if DEBUG == True:
             print("new list at " + newlist)
             print("current list at " + presentlist)

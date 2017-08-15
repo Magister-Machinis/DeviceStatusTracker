@@ -4,6 +4,8 @@ from __future__ import print_function
 from builtins import str
 from builtins import input
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
 import sys
 import itertools
 import csv
@@ -43,6 +45,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
     newerlist = None
     devicepresence= {}
     #open old and new lists for comparison
+    statuslist = "devicestatus.csv"
     with open(os.path.join(clientfolder,oldlist),"r") as oldcsv:
         olderlist = csv.reader(oldcsv)
         with open(os.path.join(clientfolder,newlist), "r") as newcsv:
@@ -70,8 +73,8 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                         print("device " +rowo[0]+" is "+devicepresence[rowo[0]])
                 except:
                     print("old list is empty")
-            textfile = "devicestatus.csv"
-            with open(os.path.join(clientfolder,textfile),"w") as statlist:
+            
+            with open(os.path.join(clientfolder,statuslist),"w") as statlist:
                 statlist.write("Devicename,Status\n")
                 for k in devicepresence:
                     temp = k + "," + devicepresence[k] + "\n"
@@ -134,12 +137,27 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     print("old list is empty")
                                 else:
                                     pass
-        return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist)
+        return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist),os.path.join(clientfolder,statuslist)
   
 #crafts and sends email
-def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist):
-
-    sendto = row[3]
-    if row[4]:
-        ccto = row[4]
-    
+def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
+    listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
+    sendto = row[3] + ";Cybersupport@blueteamglobal.com"
+   
+    with open(os.path.abspath("./emailbody.txt") as bodytext:
+        msgbody = MIMEText(bodytext.read())
+    msg = MIMEMultipart()
+    msg['Subject'] = "Weekly Enrollment Status Report"
+    msg['From'] = "CyberSupport@blueteamglobal.com"
+    msg['To'] = ",".join(sendto)
+    msg.preamble = "If this text is visible in an email there has been an error in the presentation of the message. Please contact your engagement lead"
+    msg.attach(msgbody)
+    for item in listoflists:
+        component = MIMEBase('application', 'octet-stream')
+        with open(item, 'rb') as filein:
+            component.set_payload(filein.read())
+        component.add_header('Content-Disposition', "attachment; filename= %s" % item)
+        msg.attach(component)
+    s = smtplib('localhost')
+    s.sendmail("CyberSupport@blueteamglobal.com",sendto,msgbody.as_string())
+    s.quit()
