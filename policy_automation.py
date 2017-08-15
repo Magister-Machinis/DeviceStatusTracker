@@ -10,8 +10,9 @@ import re
 import argparse
 import json
 import pprint
-import collections
+import smtplib
 import os
+
 try:
     import requests
 except ImportError as e:
@@ -135,3 +136,9 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
         return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist)
   
 #crafts and sends email
+def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist):
+
+    sendto = row[3]
+    if row[4]:
+        ccto = row[4]
+    
