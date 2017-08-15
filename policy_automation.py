@@ -10,6 +10,7 @@ import argparse
 import json
 import pprint
 import collections
+import os
 try:
     import requests
 except ImportError as e:

@@ -54,7 +54,7 @@ def main():
             item.join()
 
 def get_name_pw():
-    uname = input("Input username without client code or @k2intelligence.com: ")
+    uname = input("Input username without client code or @blueteamglobal.com: ")
     pword = getpass.getpass("Input password to be used: ")
     if not pword:
         print("Error: Password cannot be blank. Rerun the tool.")
