@@ -18,7 +18,7 @@ except ImportError as e:
     print("    sudo pip install requests --upgrade")
     sys.exit(0)
 
-import components as pc
+
 import functions as functs
 
 pp = pprint.PrettyPrinter(indent=4)
