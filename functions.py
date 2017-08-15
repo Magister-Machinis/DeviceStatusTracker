@@ -10,7 +10,6 @@ import json
 import requests
 import getpass
 import requests.packages.urllib3
-import components as pc
 import time
 
 requests.packages.urllib3.disable_warnings()
