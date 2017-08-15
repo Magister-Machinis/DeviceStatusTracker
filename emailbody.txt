@@ -1,0 +1,6 @@
+Hello,
+This is your weekly enrollment report. Attached are lists of the devices reporting to our console, as well as lists for devices which are newly enrolled this week, and devices which are no longer reporting to the console. 
+If you have any questions or concerns, please contact your engagement lead.
+
+Thank you,
+Blueteam Managed Services
