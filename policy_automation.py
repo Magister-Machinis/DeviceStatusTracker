@@ -3,8 +3,7 @@
 from __future__ import print_function
 from builtins import str
 from builtins import input
-from email.mime.text import MIMEMultipart
-from ema
+from email.mime.multipart import MIMEMultipart
 import sys
 import itertools
 import csv
