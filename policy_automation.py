@@ -144,7 +144,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
 #crafts and sends email
 def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
-    sendto = row[2] + ";Cybersupport@blueteamglobal.com; jfromholtz@hotmail.com"
+    sendto = row[2] + ";Cybersupport@blueteamglobal.com"
    
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read(), 'plain')
@@ -161,10 +161,11 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     for item in listoflists:
         print("Attaching list %s" % item)
         component = MIMEBase('application', "octet-stream")
-        component.set_payload( open(item,"rb").read())
-        encoders.encode_base64(component)
-        component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
-        msg.attach(component)
+        with open(item,'rb') as filein:
+            component.set_payload( filein.read())
+            encoders.encode_base64(component)
+            component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
+            msg.attach(component)
     msg.attach(msgbody)
     s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msg.as_string()))
