@@ -49,7 +49,7 @@ def main():
         next(config)
         for row in config:
             if THREADS == True:
-                t = mp.Process(target= devicestatus, args = (row, user, password, os.path.abspath(args.directory),DEBUG),os.path.abspath(emailbodylocation))
+                t = mp.Process(target= devicestatus, args = (row, user, password, os.path.abspath(args.directory),DEBUG,os.path.abspath(emailbodylocation)))
                 t.start()
                 listofthreads.append(t)
             else:
