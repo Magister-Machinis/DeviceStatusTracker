@@ -41,7 +41,7 @@ def devicestatus(row, user, password, directory,DEBUG,emailbody):
 #reads in config file and calls processing function for each client line, can alternatively run each line in parallel
 def main():
     #little tidbit to locate emailbody.txt file
-    generalpath = os.path.dirname(configfile)
+    generalpath = os.path.dirname(args.config)
     emailbodylocation = os.path.join(generalpath,"./emailbody.txt")
     with open(args.config, 'r') as configfile:
         config = csv.reader(configfile)
