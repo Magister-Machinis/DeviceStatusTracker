@@ -159,9 +159,8 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     msg.attach(msgbody)
     for item in listoflists:
         print("Attaching list %s" % item)
-        component = MIMEBase('application', 'octet-stream')
         filein = open(item, 'rb')
-        component.MIMEText(filein.read())
+        component = MIMEText(filein.read())
         component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
         msg.attach(component)
     s = smtplib.SMTP('localhost')
