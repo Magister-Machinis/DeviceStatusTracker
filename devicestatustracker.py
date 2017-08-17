@@ -35,7 +35,7 @@ def devicestatus(row, user, password, directory,DEBUG,emailbody):
         print("No previous file detected, using new list")
         with open(os.path.join(clientfolder,clientlist), "wb") as newclient:
             newclient.write(newlist.content)
-        devicestatus(row, user, password, directory,DEBUG)
+        devicestatus(row, user, password, directory,DEBUG,emailbody)
 
       
 #reads in config file and calls processing function for each client line, can alternatively run each line in parallel
