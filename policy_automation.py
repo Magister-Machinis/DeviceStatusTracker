@@ -166,5 +166,5 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
         msg.attach(component)
     msg.attach(msgbody)
     s = smtplib.SMTP('localhost')
-    s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
+    s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msg.as_string()))
     s.quit()
