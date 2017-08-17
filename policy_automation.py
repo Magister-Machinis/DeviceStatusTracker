@@ -148,19 +148,19 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read())
     msg = MIMEMultipart()
-    msg['From'] = "CyberSupport@blueteamglobal.com"
+    msg['From'] = "BlueteamGlobalMessenger@noreply"
     msg['To'] = ",".join(sendto)
     msg['Subject'] = "Weekly Enrollment Status Report"
-    msg.preamble = "If this text is visible in an email there has been an error in the presentation of the message. Please contact your engagement lead"
+    msg['Date'] = formatdate(localtime=True)
+    msg.preamble = "If this text is visible in an email there has been an error in the presentation of the message. Please contact your engagement lead."
     msg.attach(msgbody)
     for item in listoflists:
         print("Attaching list %s" % item)
         component = MIMEBase('application', 'octet-stream')
         with open(item, 'rb') as filein:
             component.set_payload(filein.read())
-        encoders.encode_base64(component)
-        component.add_header('Content-Disposition', "attachment; filename= %s" % item)
-        msg.attach(component)
+            component.add_header('Content-Disposition', "attachment; filename= %s" % item)
+            msg.attach(component)
     s = smtplib.SMTP('localhost')
     s.starttls()
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
