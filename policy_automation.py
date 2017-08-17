@@ -148,10 +148,11 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
    
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read(), 'plain')
-        msgbody['From'] = "CyberSupport@blueteamglobal.com"
-        msgbody['To'] = sendto
-        msgbody['Subject'] = "Weekly Enrollment Status Report"
+        
     msg = MIMEMultipart()
+    msg['From'] = "CyberSupport@blueteamglobal.com"
+    msg['To'] = sendto
+    msg['Subject'] = "Weekly Enrollment Status Report"
     msg['Date'] = formatdate(localtime=True)
    
     
