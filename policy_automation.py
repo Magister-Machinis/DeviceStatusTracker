@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.utils import formatdate
-from email import encoders
+from email import Encoders
 import sys
 import itertools
 import csv
@@ -159,8 +159,9 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     msg.attach(msgbody)
     for item in listoflists:
         print("Attaching list %s" % item)
-        filein = open(item, 'r')
-        component = MIMEText(filein.read())
+        component = MIMEBase('application', "octet-stream")
+        component.set_payload( open(item,"rb").read())
+        Encoders.encode_base64(component)
         component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
         msg.attach(component)
     s = smtplib.SMTP('localhost')
