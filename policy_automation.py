@@ -164,6 +164,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
         encoders.encode_base64(component)
         component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
         msg.attach(component)
+    msg.attach(msgbody)
     s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
     s.quit()
