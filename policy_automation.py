@@ -147,7 +147,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     sendto = row[2] + ";Cybersupport@blueteamglobal.com; jfromholtz@hotmail.com"
    
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
-        msgbody = MIMEText(bodytext.read())
+        msgbody = MIMEText(bodytext.read(), 'plain')
         msgbody['From'] = "CyberSupport@blueteamglobal.com"
         msgbody['To'] = sendto
         msgbody['Subject'] = "Weekly Enrollment Status Report"
@@ -162,7 +162,8 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
         component = MIMEBase('application', 'octet-stream')
         with open(item, 'rb') as filein:
             component.set_payload(filein.read())
-            component.add_header('Content-Disposition', "attachment; filename= %s" % os.path.basename(item))
+            component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
+            
             msg.attach(component)
     s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
