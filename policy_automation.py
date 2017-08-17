@@ -149,7 +149,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read())
     msg = MIMEMultipart()
-    msg['From'] = "BlueteamGlobalMessenger@noreply"
+    msg['From'] = "CyberSupport@blueteamglobal.com"
     msg['To'] = ",".join(sendto)
     msg['Subject'] = "Weekly Enrollment Status Report"
     msg['Date'] = formatdate(localtime=True)
@@ -164,5 +164,5 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
             msg.attach(component)
     msg.attach(msgbody)
     s = smtplib.SMTP('localhost')
-    s.sendmail("BlueteamGlobalMessenger@noreply",sendto,(msgbody.as_string()))
+    s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
     s.quit()
