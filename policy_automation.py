@@ -162,7 +162,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
         component = MIMEBase('application', 'octet-stream')
         with open(item, 'rb') as filein:
             component.set_payload(filein.read())
-            component.add_header('Content-Disposition', "attachment; filename= %s" % item)
+            component.add_header('Content-Disposition', "attachment; filename= %s" % os.path.basename(item))
             msg.attach(component)
     s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msgbody.as_string()))
