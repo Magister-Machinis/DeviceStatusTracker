@@ -148,11 +148,12 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
    
     with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
         msgbody = MIMEText(bodytext.read())
-    msg = MIMEMultipart()
-    msg['From'] = "CyberSupport@blueteamglobal.com"
-    msg['To'] = ",".join(sendto)
-    msg['Subject'] = "Weekly Enrollment Status Report"
+        msgbody['From'] = "CyberSupport@blueteamglobal.com"
+        msgbody['To'] = ",".join(sendto)
+        msgbody['Subject'] = "Weekly Enrollment Status Report"
     msg['Date'] = formatdate(localtime=True)
+    msg = MIMEMultipart()
+    
     msg.preamble = "If this text is visible in an email there has been an error in the presentation of the message. Please contact your engagement lead."
     
     for item in listoflists:
