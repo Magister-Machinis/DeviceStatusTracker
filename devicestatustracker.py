@@ -6,7 +6,7 @@ import requests
 import itertools
 import smtplib
 #functional bit, checks if folder/files for this client exist, retrieves new list from console, compares to old list, then generates message showing new list of devices, what devices are new, and what devices are no longer present
-def devicestatus(row, user, password, directory,DEBUG):
+def devicestatus(row, user, password, directory,DEBUG,emailbody):
     internalsession = requests.Session()
     username = user + row[0]
     host = row[1]
@@ -26,7 +26,7 @@ def devicestatus(row, user, password, directory,DEBUG):
             newclient.write(newlist.content)
         print("beginning list comparison")
         newlist,presentlist,absentlist,liststatus = policy.listcompare(clientfolder, clientlist, clientnewlist,DEBUG)
-        policy.mailinate(row,newlist,presentlist,absentlist,liststatus)
+        policy.mailinate(row,newlist,presentlist,absentlist,liststatus,emailbody)
         if DEBUG == True:
             print("new list at " + newlist)
             print("current list at " + presentlist)
@@ -40,17 +40,20 @@ def devicestatus(row, user, password, directory,DEBUG):
       
 #reads in config file and calls processing function for each client line, can alternatively run each line in parallel
 def main():
+    #little tidbit to locate emailbody.txt file
+    generalpath = os.path.dirname(configfile)
+    emailbodylocation = os.path.join(generalpath,"./emailbody.txt")
     with open(args.config, 'r') as configfile:
         config = csv.reader(configfile)
         listofthreads = []
         next(config)
         for row in config:
             if THREADS == True:
-                t = mp.Process(target= devicestatus, args = (row, user, password, os.path.abspath(args.directory),DEBUG))
+                t = mp.Process(target= devicestatus, args = (row, user, password, os.path.abspath(args.directory),DEBUG),os.path.abspath(emailbodylocation))
                 t.start()
                 listofthreads.append(t)
             else:
-                devicestatus(row, user, password, os.path.abspath(args.directory),DEBUG)
+                devicestatus(row, user, password, os.path.abspath(args.directory),DEBUG,os.path.abspath(emailbodylocation))
         for item in listofthreads:
             item.join()
 

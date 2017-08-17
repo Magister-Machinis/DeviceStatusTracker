@@ -142,11 +142,11 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
         return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist),os.path.join(clientfolder,statuslist)
   
 #crafts and sends email
-def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
+def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,emailbody):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
     sendto = row[2] + ";Cybersupport@blueteamglobal.com"
    
-    with open(os.path.abspath("./emailbody.txt"),'r') as bodytext:
+    with open(emailbody,'r') as bodytext:
         msgbody = MIMEText(bodytext.read(), 'plain')
         
     msg = MIMEMultipart()
