@@ -151,8 +151,9 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist):
         msgbody['From'] = "CyberSupport@blueteamglobal.com"
         msgbody['To'] = ",".join(sendto)
         msgbody['Subject'] = "Weekly Enrollment Status Report"
-    msg['Date'] = formatdate(localtime=True)
     msg = MIMEMultipart()
+    msg['Date'] = formatdate(localtime=True)
+   
     
     msg.preamble = "If this text is visible in an email there has been an error in the presentation of the message. Please contact your engagement lead."
     
