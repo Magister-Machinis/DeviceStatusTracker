@@ -93,13 +93,13 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
             newerlist = csv.reader(newcsv)
             
             with open(os.path.join(clientfolder,newdeviceslist),"w") as newdevices:
-                newdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,Policy,OS,Sensor Version\n")
+                newdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,OS,Sensor Version\n")
                 print("initialized new device list")
                 with open(os.path.join(clientfolder,absentdeviceslist),"w") as absentdevices:
-                    absentdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,Policy,OS,Sensor Version\n")
+                    absentdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,OS,Sensor Version\n")
                     print("initialized absent device list")
                     with open(os.path.join(clientfolder,currentdeviceslist),"w") as currentdevices:
-                        currentdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,Policy,OS,Sensor Version\n")
+                        currentdevices.write("Devicename,Username,Registered Date,Last Contact,Last Internal Ip Address,Last External Ip Address,Device Type,OS,Sensor Version\n")
                         print("initialized current device list")
                         next(newerlist)
                         next(olderlist)
@@ -108,14 +108,14 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                 if DEBUG == True:
                                     print(rowo)
                                 if devicepresence[rowo[0]] == "present":
-                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[16]+","+rowo[17]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into present list")
                                     if DEBUG == True: 
                                         print(temp)
                                     currentdevices.write(temp)
                                     temp = None
                                 elif devicepresence[rowo[0]] == "new":
-                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[16]+","+rowo[17]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
@@ -128,7 +128,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     pass
                             try:
                                 if devicepresence[rowo[0]] == "absent":
-                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[16]+","+rowo[17]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[12]+","+rowo[13]+","+rowo[14]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
