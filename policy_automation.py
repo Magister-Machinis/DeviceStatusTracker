@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.utils import formatdate
 from email import encoders
+from datetime import datetime
 import sys
 import itertools
 import csv
@@ -108,14 +109,14 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                 if DEBUG == True:
                                     print(rown)
                                 if devicepresence[rown[0]] == "present":
-                                    temp = str(rown[0]+","+rown[1]+","+rown[7]+","+rown[9]+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+prettytime(rowo[7])+","+prettytime(rowo[9])+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into present list")
                                     if DEBUG == True: 
                                         print(temp)
                                     currentdevices.write(temp)
                                     temp = None
                                 elif devicepresence[rown[0]] == "new":
-                                    temp = str(rown[0]+","+rown[1]+","+rown[7]+","+rown[9]+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+prettytime(rowo[7])+","+prettytime(rowo[9])+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
@@ -128,7 +129,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     pass
                             try:
                                 if devicepresence[rowo[0]] == "absent":
-                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+prettytime(rowo[7])+","+prettytime(rowo[9])+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
@@ -141,6 +142,11 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     pass
         return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist),os.path.join(clientfolder,statuslist)
   
+#quick time formatting function
+def prettytime(uglytime):
+    intermediate = datetime.strptime(uglytime,"%Y-%m-%d-%H%M%S")
+    stringedout = str(intermediate.year + "-" + intermediate.month + "-" + intermediate.day + " " + intermediate.hour + ":" + intermediate.minute + ":" + intermediate.second)
+    return stringedout
 #crafts and sends email
 def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,emailbody):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
@@ -166,7 +172,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,em
             encoders.encode_base64(component)
             component.add_header('Content-Disposition', "attachment", filename = os.path.basename(item))
             msg.attach(component)
-    msg.attach(msgbody)
+    
     s = smtplib.SMTP('localhost')
     s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msg.as_string()))
     s.quit()
