@@ -42,6 +42,12 @@ def make_request_headers(place,host=None,user=None,password=None,inniesession = 
     
     return host, request_headers
 
+#quick time formatting function
+def prettytime(uglytime):
+    intermediate = datetime.strptime(uglytime,"%Y-%m-%d-%H%M%S")
+    stringedout = str(intermediate.year + "-" + intermediate.month + "-" + intermediate.day + " " + intermediate.hour + ":" + intermediate.minute + ":" + intermediate.second)
+    return stringedout
+
 #loads in then compares both lists to find which devices are new, absent, or continuing
 def listcompare(clientfolder, oldlist, newlist, DEBUG):
     olderlist = None
@@ -142,11 +148,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     pass
         return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist),os.path.join(clientfolder,statuslist)
   
-#quick time formatting function
-def prettytime(uglytime):
-    intermediate = datetime.strptime(uglytime,"%Y-%m-%d-%H%M%S")
-    stringedout = str(intermediate.year + "-" + intermediate.month + "-" + intermediate.day + " " + intermediate.hour + ":" + intermediate.minute + ":" + intermediate.second)
-    return stringedout
+
 #crafts and sends email
 def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,emailbody):
     listoflists = newdevicelist,currentdevicelist,absentdevicelist,statuslist
