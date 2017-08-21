@@ -115,14 +115,14 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                 if DEBUG == True:
                                     print(rown)
                                 if devicepresence[rown[0]] == "present":
-                                    temp = str(rown[0]+","+rown[1]+","+prettytime(rown[7])+","+prettytime(rown[9])+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+rown[7]+","+rown[9]+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into present list")
                                     if DEBUG == True: 
                                         print(temp)
                                     currentdevices.write(temp)
                                     temp = None
                                 elif devicepresence[rown[0]] == "new":
-                                    temp = str(rown[0]+","+rown[1]+","+prettytime(rown[7])+","+prettytime(rown[9])+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+rown[7]+","+rown[9]+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
@@ -135,7 +135,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                                     pass
                             try:
                                 if devicepresence[rowo[0]] == "absent":
-                                    temp = str(rowo[0]+","+rowo[1]+","+prettytime(rowo[7])+","+prettytime(rowo[9])+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+rowo[7]+","+rowo[9]+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
