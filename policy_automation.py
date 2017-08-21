@@ -155,7 +155,7 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,em
     sendto = row[2] + ";Cybersupport@blueteamglobal.com"
    
     with open(emailbody,'r') as bodytext:
-        msgbody = MIMEText(bodytext.read(), 'plain')
+        msgbody = MIMEText(bodytext.read(), 'html')
         
     msg = MIMEMultipart()
     msg['From'] = "CyberSupport@blueteamglobal.com"
