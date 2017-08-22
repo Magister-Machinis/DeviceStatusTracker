@@ -53,6 +53,10 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
     olderlist = None
     newerlist = None
     devicepresence= {}
+    #filler items to avoid errors
+    devicepresence['fillerabsent']='absent'
+    devicepresence['fillernew']='new'
+    devicepresence['fillerpresent']='present'
     #open old and new lists for comparison
     statuslist = "DeviceStatus.csv"
     with open(os.path.join(clientfolder,oldlist),"r") as oldcsv:
