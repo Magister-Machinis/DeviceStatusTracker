@@ -45,8 +45,8 @@ def make_request_headers(place,host=None,user=None,password=None,inniesession = 
 #quick time formatting function
 def prettytime(uglytime):
     intermediate = datetime.strptime(uglytime,"%Y-%m-%d-%H%M%S")
-    stringedout = str(intermediate.year + "-" + intermediate.month + "-" + intermediate.day + " " + intermediate.hour + ":" + intermediate.minute + ":" + intermediate.second)
-    return stringedout
+    stringedout = str(intermediate.year) + "-" + str(intermediate.month) + "-" + str(intermediate.day) + " " + str(intermediate.hour) + ":" + str(intermediate.minute) + ":" + str(intermediate.second)
+    return str(stringedout)
 
 #loads in then compares both lists to find which devices are new, absent, or continuing
 def listcompare(clientfolder, oldlist, newlist, DEBUG):
