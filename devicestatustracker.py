@@ -82,7 +82,7 @@ if __name__ == "__main__":
         DEBUG = False
     if args.multiprocessed is not None:
         if(DEBUG == True):
-            print("Parallel uploading enabled, kiss your bandwidth goodbye")
+            print("Parallel job handling enabled, kiss your bandwidth goodbye")
         import multiprocessing as mp
         THREADS = True
     else:
