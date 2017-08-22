@@ -54,7 +54,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
     newerlist = None
     devicepresence= {}
     #open old and new lists for comparison
-    statuslist = "devicestatus.csv"
+    statuslist = "DeviceStatus.csv"
     with open(os.path.join(clientfolder,oldlist),"r") as oldcsv:
         olderlist = csv.reader(oldcsv)
         with open(os.path.join(clientfolder,newlist), "r") as newcsv:
@@ -93,7 +93,7 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
     newerlist = None
     newdeviceslist = "NewDevices.csv"
     absentdeviceslist = "AbsentDevices.csv"
-    currentdeviceslist = "Devicelist.csv"
+    currentdeviceslist = "PersistentDevices.csv"
     with open(os.path.join(clientfolder,oldlist),"r") as oldcsv:
         olderlist = csv.reader(oldcsv)
         with open(os.path.join(clientfolder,newlist), "r") as newcsv:
