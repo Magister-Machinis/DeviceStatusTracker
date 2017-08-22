@@ -75,6 +75,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.verbose is not None:
         DEBUG = True
+        print("Verbose output enabled")
         print("config at "+ args.config)
         print("target directory is " + args.directory)
     else:
