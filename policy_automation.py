@@ -111,41 +111,71 @@ def listcompare(clientfolder, oldlist, newlist, DEBUG):
                         next(newerlist)
                         next(olderlist)
                         for rown, rowo in itertools.zip_longest(newerlist, olderlist):
-                            try:
+                            if DEBUG != True:
+                                try:
+                                    if DEBUG == True:
+                                        print(rown)
+                                    if devicepresence[rown[0]] == "present":
+                                        temp = str(rown[0]+","+rown[1]+","+str(prettytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                        print("sorting device: "+rown[0]+" into present list")
+                                        if DEBUG == True: 
+                                            print(temp)
+                                        currentdevices.write(temp)
+                                        temp = None
+                                    elif devicepresence[rown[0]] == "new":
+                                        temp = str(rown[0]+","+rown[1]+","+str(prettytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                        print("sorting device: "+rown[0]+" into new list")
+                                        if DEBUG == True: 
+                                            print(temp)
+                                        newdevices.write(temp)
+                                        temp = None
+                                except:
+                                    if DEBUG == True:
+                                        print("new list is empty")
+                                    else:
+                                        pass
+                                try:
+                                    if devicepresence[rowo[0]] == "absent":
+                                        temp = str(rowo[0]+","+rowo[1]+","+str(prettytime(rowo[7]))+","+str(prettytime(rowo[9]))+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
+                                        print("sorting device: "+rowo[0]+" into new list")
+                                        if DEBUG == True: 
+                                            print(temp)
+                                        absentdevices.write(temp)
+                                        temp = None
+                                except:
+                                    if DEBUG == True:
+                                        print("old list is empty")
+                                    else:
+                                        pass
+                        else:
+                                
                                 if DEBUG == True:
                                     print(rown)
                                 if devicepresence[rown[0]] == "present":
-                                    temp = str(rown[0]+","+rown[1]+","+str(pretttytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+str(prettytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into present list")
                                     if DEBUG == True: 
                                         print(temp)
                                     currentdevices.write(temp)
                                     temp = None
                                 elif devicepresence[rown[0]] == "new":
-                                    temp = str(rown[0]+","+rown[1]+","+str(pretttytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
+                                    temp = str(rown[0]+","+rown[1]+","+str(prettytime(rown[7]))+","+str(prettytime(rown[9]))+","+rown[10]+","+rown[11]+","+rown[12]+","+rown[15]+","+rown[16]+"\n")
                                     print("sorting device: "+rown[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
                                     newdevices.write(temp)
                                     temp = None
-                            except:
-                                if DEBUG == True:
-                                    print("new list is empty")
-                                else:
-                                    pass
-                            try:
+                                
+                                
                                 if devicepresence[rowo[0]] == "absent":
-                                    temp = str(rowo[0]+","+rowo[1]+","+str(pretttytime(rowo[7]))+","+str(prettytime(rowo[9]))+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
+                                    temp = str(rowo[0]+","+rowo[1]+","+str(prettytime(rowo[7]))+","+str(prettytime(rowo[9]))+","+rowo[10]+","+rowo[11]+","+rowo[12]+","+rowo[15]+","+rowo[16]+"\n")
                                     print("sorting device: "+rowo[0]+" into new list")
                                     if DEBUG == True: 
                                         print(temp)
                                     absentdevices.write(temp)
                                     temp = None
-                            except:
-                                if DEBUG == True:
-                                    print("old list is empty")
-                                else:
-                                    pass
+                               
+                                
         return os.path.join(clientfolder,newdeviceslist),os.path.join(clientfolder,currentdeviceslist),os.path.join(clientfolder,absentdeviceslist),os.path.join(clientfolder,statuslist)
   
 
