@@ -16,7 +16,8 @@
                         <tr>
                             <td align="left">
                                 Hello,<br><br>
-                                As part of our continued efforts to assist you and your team in keeping your infrastructure secure, we have created the following <br>
+                                As part of our continued efforts to assist you and your team in keeping your infrastructure secure, we have created the attached reports of devices enrolled under our monitoring services. Please use these lists for any tracking or auditing requirements you may be maintaining compliance with.<br>
+				<br>
 								The attached lists are as follows:<br>
 								<br>
 								DeviceStatus is a streamlined list of devices enrolled from this and last week, and whether they are newly detected, still present, or now absent from the current weeks list. Please refer to the other lists attached for more detailed information.<br>
