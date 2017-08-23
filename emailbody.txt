@@ -18,6 +18,7 @@
                                 Hello,<br><br>
                                 As part of our continued efforts to assist you and your team in keeping your infrastructure secure, we have created the following <br>
 								The attached lists are as follows:<br>
+								<br>
 								DeviceStatus is a streamlined list of devices enrolled from this and last week, and whether they are newly detected, still present, or now absent from the current weeks list. Please refer to the other lists attached for more detailed information.<br>
 								<br>
 								PersistentDevices contains a detailed list of the devices which were present for the previous reporting cycle and are still listed as such.<br>
@@ -31,7 +32,7 @@
                                 Thank you,<br>
                                 Blueteam Managed Services<br>
 								<br><br><br>
-								Please note that this is an automated message, direct all comments to your engagement lead.
+								<font size=2>Please note that this is an automated message, direct all comments to your engagement lead.</font>
 							</td>
                         </tr>
                     </table>
