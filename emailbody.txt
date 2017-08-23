@@ -32,7 +32,7 @@
                                 Thank you,<br>
                                 Blueteam Managed Services<br>
 								<br><br><br>
-								<font size=2>Please note that this is an automated message, direct all comments to your engagement lead.</font>
+								<font size="2">Please note that this is an automated message, direct all comments to your engagement lead.</font>
 							</td>
                         </tr>
                     </table>
