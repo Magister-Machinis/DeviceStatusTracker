@@ -8,8 +8,8 @@
         .content {width: 100%; max-width: 600px;}  
         </style>
     </head>
-    <body yahoo bgcolor="#ccffff">
-        <table width="100%" bgcolor="#ccffff" border="0" cellpadding="0" cellspacing="0">
+    <body yahoo bgcolor="#e6f3ff">
+        <table width="100%" bgcolor="#e6f3ff" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
                     <table class="content" align="left" cellpadding="10" cellspacing="0" border="0">
@@ -22,18 +22,18 @@
 								<br>
 								<u>DeviceStatus</u>: is a streamlined list of devices enrolled from this and last week, and whether they are newly detected, still present, or now absent from the current weeks list. Please refer to the other lists attached for more detailed information.<br>
 								<br>
-								<u>PersistentDevices</u> contains a detailed list of the devices which were present for the previous reporting cycle and are still listed as such.<br>
+								<u>PersistentDevices</u>: contains a detailed list of the devices which were present for the previous reporting cycle and are still listed as such.<br>
 								<br>
-								<u>AbsentDevices</u> is a list of the devices which are no longer reporting to the console, relative to the previous reporting cylce. If you see any devices on this list which should not be, please contact your engagement lead.<br>
+								<u>AbsentDevices</u>: is a list of the devices which are no longer reporting to the console, relative to the previous reporting cylce. If you see any devices on this list which should not be, please contact your engagement lead.<br>
 								<br>
-								<u>NewDevices</u> are the devices which have enrolled during this reporting cycle.<br>
+								<u>NewDevices</u>: are the devices which have enrolled during this reporting cycle.<br>
 								<br>
                                 Please note that our sensors only explicitly deregister from the console if it is uninstalled with an available internet connection. Sensors which fail to contact the console for 30 days are flagged as inactive and will appear in the AbsentDevices list at that time (this is most commonly seen with sensors installed on virtual machines). If you have any questions or concerns, please contact your engagement lead.<br>
 								<br>
                                 Thank you,<br>
                                 Blueteam Managed Services<br>
 								<br><br><br>
-								<font size="2">Please note that this is an automated message, direct all comments to your engagement lead.</font>
+								<font size="1">Please note that this is an automated message, direct all comments to your engagement lead.</font>
 							</td>
                         </tr>
                     </table>
