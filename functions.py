@@ -38,9 +38,10 @@ def login(session, user, password, host, request_headers):
     url = host + '/userInfo'
     response = session.get(url, data=formdata, headers=request_headers, timeout=30)
     
-    if 'csrf' in response.json() and response.json()['csrf'] is not None:
-        csrf = json.dumps(response.json()['csrf']).replace('"', '')
-        return csrf
+    if 'csrf' in response.json():
+        if response.json()['csrf'] is not None:
+            csrf = json.dumps(response.json()['csrf']).replace('"', '')
+            return csrf
     else:
         print('Error: Authentication failed. The username/password combination is not valid for %s' % (host))
         sys.exit(1)
