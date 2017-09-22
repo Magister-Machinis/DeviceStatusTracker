@@ -33,17 +33,24 @@ def login(session, user, password, host, request_headers):
     formdata = {'forward': '', 'email': user, 'password': password}
     
     url = host + '/checkAuthStrategy'
-    response = session.post(url, data=formdata, headers=request_headers, timeout=30)
+    counter = 1
+    response = session.post(url, data=formdata, headers=request_headers, timeout=(count*30))
+
     
     url = host + '/userInfo'
-    response = session.get(url, data=formdata, headers=request_headers, timeout=30)
-    
-    if ('csrf' in response.json() and response.json()['csrf'] is not None):
-        csrf = json.dumps(response.json()['csrf']).replace('"', '')
-        return csrf
-    else:
-        print('Error: Authentication failed. The username/password combination is not valid for %s' % (host))
-        sys.exit(1)
+    while counter > 0:
+        try:
+            response = session.get(url, data=formdata, headers=request_headers, timeout=(counter*15))
+            csrf = json.dumps(response.json()['csrf']).replace('"', '')
+            counter = 0
+            return csrf
+        except Exception as e:
+                print("Login GET request failed for the following URI: %s" % (uri))
+                print("Exception: %s" % (e))
+                counter += 1
+                if counter > 4:
+                    print('Error: Authentication failed. The username/password combination is not valid for %s' % (host))
+                    sys.exit(1)
 
 
 def web_get_ALL(session, host, uri, request_headers):
@@ -55,7 +62,7 @@ def web_get_ALL(session, host, uri, request_headers):
             counter = 0
         except Exception as e:
             counter += 1
-            print("GET request failed for the following URI: %s" % (uri))
+            print("Web GET request failed for the following URI: %s" % (uri))
             print("Exception: %s" % (e))
             if counter > 4:
                 print("Multiple GET attempts failed, aborting process")
