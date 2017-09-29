@@ -34,7 +34,7 @@ def login(session, user, password, host, request_headers):
     
     url = host + '/checkAuthStrategy'
     counter = 1
-    response = session.post(url, data=formdata, headers=request_headers, timeout=(count*30))
+    response = session.post(url, data=formdata, headers=request_headers, timeout=(counter*30))
 
     
     url = host + '/userInfo'
