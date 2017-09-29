@@ -45,7 +45,7 @@ def login(session, user, password, host, request_headers):
             counter = 0
             return csrf
         except Exception as e:
-                print("Login GET request failed for the following URI: %s" % (uri))
+                print("Login GET request failed")
                 print("Exception: %s" % (e))
                 counter += 1
                 if counter > 4:
