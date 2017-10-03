@@ -179,5 +179,8 @@ def mailinate(row,newdevicelist,currentdevicelist,absentdevicelist,statuslist,em
             msg.attach(component)
     
     s = smtplib.SMTP('localhost')
-    s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msg.as_string()))
+    try:
+        s.sendmail("CyberSupport@blueteamglobal.com",sendto,(msg.as_string()))
+    except Exception as e:
+        print("Error sending message: " + e)
     s.quit()

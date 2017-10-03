@@ -48,6 +48,7 @@ def login(session, user, password, host, request_headers):
                 print("Login GET request failed")
                 print("Exception: %s" % (e))
                 counter += 1
+                time.sleep(counter)
                 if counter > 4:
                     print('Error: Authentication failed. The username/password combination is not valid for %s' % (host))
                     sys.exit(1)
@@ -64,6 +65,7 @@ def web_get_ALL(session, host, uri, request_headers):
             counter += 1
             print("Web GET request failed for the following URI: %s" % (uri))
             print("Exception: %s" % (e))
+            time.sleep(counter)
             if counter > 4:
                 print("Multiple GET attempts failed, aborting process")
                 sys.exit(1)
