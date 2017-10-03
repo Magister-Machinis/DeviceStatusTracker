@@ -69,8 +69,5 @@ def web_get_ALL(session, host, uri, request_headers):
             if counter > 4:
                 print("Multiple GET attempts failed, aborting process")
                 sys.exit(1)
-    try:
-        return response
-    except Exception as e:
-        pass
-
+   
+    return response
