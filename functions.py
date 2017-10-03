@@ -29,7 +29,6 @@ sudo pip install requests --upgrade")
     
 
 def login(session, user, password, host, request_headers):
-    #request_headers = build_request_headers(host)
     formdata = {'forward': '', 'email': user, 'password': password}
     
     url = host + '/checkAuthStrategy'
